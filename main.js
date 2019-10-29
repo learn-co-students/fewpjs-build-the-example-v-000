@@ -17,11 +17,13 @@ console.log(hearts);
 // .then and then .catch
 
 const clickHeart = (event) => {
-  console.log(event);
+  // console.log(event);
   event.preventDefault();
 
+  const url = "http://localhost:5500/";
 
-  return fetch(event, {
+
+  return fetch(url, {
     method: 'POST',
     headers: {'Content-Type': 'application/json',
       'Accept': 'application/json'
@@ -31,14 +33,16 @@ const clickHeart = (event) => {
     .then((response) => response.text)
     .then((json) => {heartClicked(json);})
     .catch((error) => {
-      document.querySelector("#modal.hidden").removeAttribute(".hidden");
-      document.getElementById("modal-message").innerHTML = error.message;
+      //debugger
+      document.querySelector("#modal.hidden").removeAttribute("class");
+      // document.getElementById("modal-message").innerHTML = error.message;
       setTimeout(hideErrorMessage, 5000)
     })
 }
 
 const heartClicked = (heart) => {
-  document.querySelector(".like-glyph") = heart;
+  // maybe need to add a loop? 
+   heart = document.querySelector(".like");
   if (heart === EMPTY_HEART) {
     heart.setAttribute("class", "activated-heart");
   } else {
@@ -48,19 +52,17 @@ const heartClicked = (heart) => {
 
 const hideErrorMessage = (error) => {
   const div = document.getElementById("modal");
-  console.log(div.setAttribute("class", "hidden"));
+  div.setAttribute("class", "hidden").innerHTML = error;
   
 }
 
 const likeCallback = (event) => {
-  console.log(event);
+  heart = event.target.children[0];
   mimicServerCall(event)
-  .then(function (response) {
-    console.log(response);
-    clickHeart(event);
+  .then(function (event) {
+    heartClicked(event);
   })
   .catch((error) => {
-    console.log(error);
     hideErrorMessage(error);
   })
 }
