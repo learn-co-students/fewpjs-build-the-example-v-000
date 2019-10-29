@@ -13,27 +13,51 @@ document.addEventListener("DOMContentLoaded", function(){
 
 console.log(hearts);
 
-const heart = (event) => {
+
+
+const clickHeart = (event) => {
+  console.log(event);
   event.preventDefault();
   return fetch(event)
     .then((response) => response.text)
-    .then((heart) => {
-      document.querySelector(".like-glyph") = heart;
-    })
+    .then((heart) => {heartClicked(heart);})
     .catch((error) => {
       document.querySelector("#modal.hidden") = error;
       error.removeAttribute(".hidden");
       document.getElementById("modal-message") = error.message;
-      setTimeout(function to be executed, 5000)
+      setTimeout(hideErrorMessage, 5000)
     })
+}
+
+const heartClicked = (heart) => {
+  document.querySelector(".like-glyph") = heart;
+  if (heart === EMPTY_HEART) {
+    heart.setAttribute("class", "activated-heart");
+  } else {
+    heart.removeAttribute("class", "activated-heart");
+  }
+}
+
+const hideErrorMessage = (error) => {
+  const div = document.getElementById("modal");
+  div.setAttribute("class", "hidden") = error;
+  
 }
 
 // create a variable called heart = event
 // .then and then .catch
 
 const likeCallback = (event) => {
-  // console.log(event);
-  mimicServerCall();
+  console.log(event);
+  mimicServerCall(event)
+  .then(function (response) {
+    console.log(response);
+    clickHeart(event);
+  })
+  .catch((error) => {
+    console.log(error);
+    hideErrorMessage(error);
+  })
 }
 
 
