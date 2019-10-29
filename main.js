@@ -48,7 +48,7 @@ const heartClicked = (heart) => {
 
 const hideErrorMessage = (error) => {
   const div = document.getElementById("modal");
-  div.setAttribute("class", "hidden").innerHTML = error;
+  console.log(div.setAttribute("class", "hidden"));
   
 }
 
