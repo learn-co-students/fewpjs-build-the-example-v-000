@@ -13,18 +13,26 @@ document.addEventListener("DOMContentLoaded", function(){
 
 console.log(hearts);
 
-
+// create a variable called heart = event
+// .then and then .catch
 
 const clickHeart = (event) => {
   console.log(event);
   event.preventDefault();
-  return fetch(event)
+
+
+  return fetch(event, {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    },
+    body: JSON.stringify(event.target)
+    })
     .then((response) => response.text)
-    .then((heart) => {heartClicked(heart);})
+    .then((json) => {heartClicked(json);})
     .catch((error) => {
-      document.querySelector("#modal.hidden") = error;
-      error.removeAttribute(".hidden");
-      document.getElementById("modal-message") = error.message;
+      document.querySelector("#modal.hidden").removeAttribute(".hidden");
+      document.getElementById("modal-message").innerHTML = error.message;
       setTimeout(hideErrorMessage, 5000)
     })
 }
@@ -40,12 +48,9 @@ const heartClicked = (heart) => {
 
 const hideErrorMessage = (error) => {
   const div = document.getElementById("modal");
-  div.setAttribute("class", "hidden") = error;
+  div.setAttribute("class", "hidden").innerHTML = error;
   
 }
-
-// create a variable called heart = event
-// .then and then .catch
 
 const likeCallback = (event) => {
   console.log(event);
