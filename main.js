@@ -29,8 +29,10 @@ Array.from(likes).forEach(element => {
   function heartStatus(element) {
     if (element.innerTEXT === EMPTY_HEART || element.innerTEXT === '&#x2661;') {
       element.innerTEXT = FULL_HEART
+      element.className = 'activated-heart'
     } else {
       element.innerTEXT = EMPTY_HEART
+      element.className = ""
     }
   }
 
