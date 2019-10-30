@@ -13,6 +13,27 @@ document.addEventListener("DOMContentLoaded", function(){
 
 console.log(hearts);
 
+const likeCallback = (event) => {
+  console.log(event.target.children[0]);
+  mimicServerCall(event)
+    .then(function (event) {
+      heartClicked(event);
+    })
+    .catch((error) => {
+      hideErrorMessage(error);
+    })
+}
+
+const heartClicked = (heart) => {
+  // maybe need to add a loop? 
+  heart = document.querySelector(".like").firstElementChild;
+  // heart.firstElementChild;
+  if (heart === EMPTY_HEART) {
+    heart.setAttribute("class", "activated-heart");
+  } else {
+    heart.removeAttribute("class", "activated-heart");
+  }
+}
 // create a variable called heart = event
 // .then and then .catch
 
@@ -40,32 +61,14 @@ const clickHeart = (event) => {
     })
 }
 
-const heartClicked = (heart) => {
-  // maybe need to add a loop? 
-   heart = document.querySelector(".like");
-  if (heart === EMPTY_HEART) {
-    heart.setAttribute("class", "activated-heart");
-  } else {
-    heart.removeAttribute("class", "activated-heart");
-  }
-}
-
 const hideErrorMessage = (error) => {
+  console.log(error);
   const div = document.getElementById("modal");
-  div.setAttribute("class", "hidden").innerHTML = error;
+  div.setAttribute("class", "hidden");
   
 }
 
-const likeCallback = (event) => {
-  heart = event.target.children[0];
-  mimicServerCall(event)
-  .then(function (event) {
-    heartClicked(event);
-  })
-  .catch((error) => {
-    hideErrorMessage(error);
-  })
-}
+
 
 
 //------------------------------------------------------------------------------
