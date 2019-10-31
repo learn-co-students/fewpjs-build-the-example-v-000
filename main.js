@@ -4,7 +4,10 @@ const FULL_HEART = '♥'
 
 // Your JavaScript code goes here!
 
+document.querySelector('#modal').style.visibility = 'hidden';
 
+document.getElementById("EMPTY_HEART").addEventListener("click", displayDate);
+//link it to the article class....and when they click like, it would match ? and light up the heart
 
 
 //------------------------------------------------------------------------------
