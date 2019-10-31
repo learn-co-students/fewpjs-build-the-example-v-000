@@ -4,6 +4,16 @@ const FULL_HEART = '♥'
 
 // Your JavaScript code goes here!
 
+let glyphStates = {
+  "♡": "♥",
+  "♥": "♡"
+};
+
+let colorStates = {
+  "red": "",
+  "": "red"
+};
+
 const hearts = document.querySelectorAll(".like");
 document.addEventListener("DOMContentLoaded", function(){
   return hearts.forEach((heart) => {
@@ -14,10 +24,10 @@ document.addEventListener("DOMContentLoaded", function(){
 console.log(hearts);
 
 const likeCallback = (event) => {
-  console.log(event.target.children[0]);
-  mimicServerCall(event)
-    .then(function (event) {
-      heartClicked(event);
+  let heart = event.target;
+  mimicServerCall("url")
+    .then(function () {
+      heartClicked(heart);
     })
     .catch((error) => {
       hideErrorMessage(error);
@@ -27,39 +37,12 @@ const likeCallback = (event) => {
 const heartClicked = (heart) => {
   // maybe need to add a loop? 
   heart = document.querySelector(".like").firstElementChild;
-  // heart.firstElementChild;
-  if (heart === EMPTY_HEART) {
-    heart.setAttribute("class", "activated-heart");
-  } else {
-    heart.removeAttribute("class", "activated-heart");
-  }
+  heart.innerText = glyphStates[heart.innerText];
+  heart.style.color = colorStates[heart.style.color];
 }
 // create a variable called heart = event
 // .then and then .catch
 
-const clickHeart = (event) => {
-  // console.log(event);
-  event.preventDefault();
-
-  const url = "http://localhost:5500/";
-
-
-  return fetch(url, {
-    method: 'POST',
-    headers: {'Content-Type': 'application/json',
-      'Accept': 'application/json'
-    },
-    body: JSON.stringify(event.target)
-    })
-    .then((response) => response.text)
-    .then((json) => {heartClicked(json);})
-    .catch((error) => {
-      //debugger
-      document.querySelector("#modal.hidden").removeAttribute("class");
-      // document.getElementById("modal-message").innerHTML = error.message;
-      setTimeout(hideErrorMessage, 5000)
-    })
-}
 
 const hideErrorMessage = (error) => {
   console.log(error);
