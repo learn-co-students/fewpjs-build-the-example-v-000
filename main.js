@@ -14,7 +14,7 @@ let likeHeart = document.querySelectorAll(".like");  // selecting "likes" elemen
   function likeFunction(e) {
      let heart = e.target;
 
-      mimicServerCall("Url") //fetch function - Invoke minicServerCall to simulate making a server request
+  mimicServerCall("Url") //fetch function - Invoke minicServerCall to simulate making a server request
       .then(function(serverMessage){   // changing heart in HTML
         if (heart.innerHTML == FULL_HEART) {
             heart.innerHTML = EMPTY_HEART};
@@ -36,24 +36,26 @@ let likeHeart = document.querySelectorAll(".like");  // selecting "likes" elemen
         }, 5000)
        });
 
-       const li = document.getElementsByTagName('li')  //create class for activated_heart in each li
-       for(let i=0; i < li.length; i++) {
-
+      const li = document.getElementsByTagName('li')  //create class for activated_heart in each li
+        for(let i=0; i < li.length; i++) {
        const spanLike = document.querySelector('span.like-glyph')
-       spanLike.style.color = "red"
+       spanLike.style.color = 'red'
        console.log(spanLike[i])
 
-       // element.class:ost.remove("activated_heart")
-
-       //element.className = ".activated_heart"  add activated heart to HTML
-      // element.classList.add("activated_heart");
        }
     }
-  }
+ }
 
 /*  Pending
-a) red heart for second person
-b) remove activated heart  */
+a) red heart for second person /looping is not working and activated heart is not working
+b) remove activated heart
+
+
+        element.class:LIst.remove("activated_heart")
+        heart.className += "activated_heart"
+        heart.classList.add("activated_heart")
+        //heart.style.color ='red'// add activated heart to HTML
+        // element.classList.add("activated_heart");  */
 
 
 //------------------------------------------------------------------------------
