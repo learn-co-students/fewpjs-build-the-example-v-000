@@ -4,19 +4,23 @@ const FULL_HEART = '♥'
 
 // Your JavaScript code goes here!
 
-// document.querySelector('#modal').style.visibility = 'hidden';
+function likeHeart(){
+mimicServerCall("url")
+.then(function(){
+// changes teh color of the heart
+console.log('pass')
+})// does action if it passes
 
-document.getElementById("id.like-glyph").addEventListener("click", mimicServerCall());
-.then( // does action if it passes
-  
-)
-.catch(function(error)
-document.querySelector('modal').className = ''
-)
+.catch(function(error){
+document.getElementById('modal').className = ""
+//this is if the server call fails
+})
+
+document.getElementById("like-glyph").addEventListener("click", likeHeart())
 
 //link it to the article class....and when they click like, it would match ? and light up the heart
 
-
+}
 //if server fails, respond to error with a catch block. afteryour then block
 // display error modal and show the message
 
