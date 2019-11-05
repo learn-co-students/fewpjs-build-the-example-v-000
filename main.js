@@ -4,11 +4,10 @@ const FULL_HEART = '♥'
 
 // Your JavaScript code goes here!
 
-function likeHeart(){
-mimicServerCall("url")
+function likeHeart(){ mimicServerCall("url")
 .then(function(){
 // changes teh color of the heart
-console.log('pass')
+document.getElementById("like-glyph").style.color = "red";
 })// does action if it passes
 
 .catch(function(error){
@@ -16,7 +15,7 @@ document.getElementById('modal').className = ""
 //this is if the server call fails
 })
 
-document.getElementById("like-glyph").addEventListener("click", likeHeart())
+document.getElementById(".like").addEventListener("click", likeHeart())
 
 //link it to the article class....and when they click like, it would match ? and light up the heart
 
