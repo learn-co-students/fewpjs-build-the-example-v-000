@@ -5,8 +5,8 @@ const FULL_HEART = '♥'
 // Your JavaScript code goes here!
 
 document.addEventListener("DOMContentLoaded", () => {
-  const modal = document.getElementById("modal");
-  modal.classList.add('hidden');
+  const modalError = document.getElementById("modal");
+  modalError.classList.add('hidden');
 
 })
 
@@ -27,8 +27,8 @@ for (let glyph of likeGlyphs) {
         
       })
       .catch(function (error) {
-        modal.classList.remove('hidden');
-        setTimeout(modal.classList.add('hidden'), 5000);
+        modalError.classList.remove('hidden');
+        setTimeout(modalError.classList.add('hidden'), 5000);
       });
   });
 }
