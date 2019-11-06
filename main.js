@@ -8,19 +8,15 @@ const FULL_HEART = '♥'
 
 
 
-function likeHeart(){
+function likeHeart(event){
   mimicServerCall("url")
 .then(function(){
 // changes the heart to a full heart
 //add activated heart to make heart appear red.
-
-var likes = document.getElementsByClassName('like-glyph')
-
-for (var i = 0; i < likes.length; i++) {
-    likes[i].className += ' activated-heart'
-}
+console.log(event)
+event.srcElement.className += ' activated-heart'
 })// does action if it passes
-
+//source elemnt narrows down the element.
 .catch(function(error){
 document.getElementById('modal').className = ""
 document.getElementById('modal').innerHTML = error.message
