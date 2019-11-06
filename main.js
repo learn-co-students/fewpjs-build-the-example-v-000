@@ -3,9 +3,41 @@ const EMPTY_HEART = '♡'
 const FULL_HEART = '♥'
 
 // Your JavaScript code goes here!
+//getEleementsbyclassname -returns an array of elements.
+//addeventlistener to a single element.
 
 
 
+function likeHeart(event){
+  mimicServerCall("url")
+.then(function(){
+// changes the heart to a full heart
+//add activated heart to make heart appear red.
+console.log(event)
+event.srcElement.className += ' activated-heart'
+})// does action if it passes
+//source elemnt narrows down the element.
+.catch(function(error){
+document.getElementById('modal').className = ""
+document.getElementById('modal').innerHTML = error.message
+
+//this is if the server call fails
+})
+
+
+//link it to the article class....and when they click like, it would match ? and light up the heart
+
+}
+//if server fails, respond to error with a catch block. afteryour then block
+// display error modal and show the message
+
+window.addEventListener('DOMContentLoaded', () => {
+var likes = document.getElementsByClassName('like')
+
+for (var i = 0; i < likes.length; i++) {
+    likes[i].addEventListener('click', likeHeart, false);
+}
+})
 
 //------------------------------------------------------------------------------
 // Ignore after this point. Used only for demo purposes
