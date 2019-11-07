@@ -4,6 +4,33 @@ const FULL_HEART = '♥'
 
 // Your JavaScript code goes here!
 
+const likeGlyph = document.querySelectorAll('.like-glyph')
+
+for (const heart of likeGlyph) {
+  heart.addEventListener('click', (event) => {
+    console.log(event.target)
+    const heartImage = event.target
+    mimicServerCall()
+    .then(() => {
+      if (heartImage.textContent !== FULL_HEART) {
+        heartImage.textContent = FULL_HEART;
+      } else {
+        heartImage.textContent = EMPTY_HEART;
+      }
+      heartImage.classList.toggle("activated-heart");
+    })
+    .catch((error) => {
+      document.getElementById('modal-message').textContent = error;
+      function displayError() {
+        document.getElementById('modal').classList.toggle('hidden');
+      }
+      displayError();
+      const temporaryDisply = setTimeout(() => {
+        displayError();
+      }, 5000)
+    });
+  })
+}
 
 
 
