@@ -4,9 +4,11 @@ const FULL_HEART = '♥'
 
 // Your JavaScript code goes here!
 
+let articleHearts = document.querySelectorAll(".like");
 
-
-
+for (let glyph of articleHearts) {
+  glyph.addEventListener("click", console.log);
+}
 //------------------------------------------------------------------------------
 // Ignore after this point. Used only for demo purposes
 //------------------------------------------------------------------------------
