@@ -19,6 +19,14 @@ function toLikeOrNotToLike(element){
     
   }).catch((message) => {
     console.log(message)
+
+    function addTextNode(text) {
+      let newtext = document.createTextNode(text),
+      errorPElement= document.getElementById('modal-message');
+      errorPElement.appendChild(newtext)
+    }
+    
+    addTextNode(message)
     
     document.getElementById("modal").className = ""
     setTimeout(function(){ document.getElementById("modal").className = "hidden"; }, 3000);
