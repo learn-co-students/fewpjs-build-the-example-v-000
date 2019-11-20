@@ -4,11 +4,29 @@ const FULL_HEART = '♥'
 
 // Your JavaScript code goes here!
 
-let articleHearts = document.querySelectorAll(".like");
 
-for (let glyph of articleHearts) {
-  glyph.addEventListener("click", console.log(`You clicked the ${glyph.innerText} heart!`));
+let classyHearts = document.querySelectorAll(".like")
+
+for (let lkGlyph of classyHearts) {
+  lkGlyph.addEventListener("click", toLikeOrNotToLike);
 }
+
+function toLikeOrNotToLike(element){
+  let heart = element.target
+  mimicServerCall("someUrl")
+  .then((message) => {
+    console.log(message)
+    
+  }).catch((message) => {
+    console.log(message)
+    
+    document.getElementById("modal").className = ""
+    setTimeout(function(){ document.getElementById("modal").className = "hidden"; }, 3000);
+    
+  })
+
+}
+
 
 
 //------------------------------------------------------------------------------
