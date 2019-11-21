@@ -5,11 +5,10 @@ const errorPElement = document.getElementById('modal-message')
 // Your JavaScript code goes here!
 
 
-let classyHearts = document.querySelectorAll(".like")
+let classyHearts = document.querySelectorAll(".like-glyph")
 
 for (let lkGlyph of classyHearts) {
   lkGlyph.addEventListener("click", toLikeOrNotToLike);
-  
 }
 
 function toLikeOrNotToLike(element){
@@ -17,11 +16,15 @@ function toLikeOrNotToLike(element){
   let heart = element.target
   mimicServerCall("someUrl")
   .then((message) => {
-    
-    heart.classList.add('activated-heart')
-    heart.innerHTML = FULL_HEART
+    if (heart.innerHTML === EMPTY_HEART) {
+      heart.classList.add('activated-heart')
+      heart.innerHTML = FULL_HEART
+    } else {
+      heart.classList.remove('activated-heart')
+      heart.innerHTML = EMPTY_HEART
+    }
+  
     console.log(message)
-    
   }).catch((message) => {
     console.log(message)
 
@@ -37,9 +40,7 @@ function toLikeOrNotToLike(element){
     setTimeout(function(){ document.getElementById("modal").className = "hidden"; }, 3000);
     
   })
-
 }
-
 
 
 //------------------------------------------------------------------------------
