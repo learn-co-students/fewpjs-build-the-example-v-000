@@ -1,7 +1,7 @@
 // Defining text characters for the empty and full hearts for you to use later.
 const EMPTY_HEART = '♡'
 const FULL_HEART = '♥'
-
+const errorPElement = document.getElementById('modal-message')
 // Your JavaScript code goes here!
 
 
@@ -12,6 +12,7 @@ for (let lkGlyph of classyHearts) {
 }
 
 function toLikeOrNotToLike(element){
+  
   let heart = element.target
   mimicServerCall("someUrl")
   .then((message) => {
@@ -21,11 +22,11 @@ function toLikeOrNotToLike(element){
     console.log(message)
 
     function addTextNode(text) {
-      let newtext = document.createTextNode(text),
-      errorPElement= document.getElementById('modal-message');
+      let newtext = document.createTextNode(text)
       errorPElement.appendChild(newtext)
+      setTimeout(function(){ errorPElement.innerHTML = ""; }, 3000)
     }
-    
+
     addTextNode(message)
     
     document.getElementById("modal").className = ""
