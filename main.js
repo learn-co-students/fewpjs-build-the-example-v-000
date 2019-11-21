@@ -9,6 +9,7 @@ let classyHearts = document.querySelectorAll(".like")
 
 for (let lkGlyph of classyHearts) {
   lkGlyph.addEventListener("click", toLikeOrNotToLike);
+  
 }
 
 function toLikeOrNotToLike(element){
@@ -16,6 +17,9 @@ function toLikeOrNotToLike(element){
   let heart = element.target
   mimicServerCall("someUrl")
   .then((message) => {
+    
+    heart.classList.add('activated-heart')
+    heart.innerHTML = FULL_HEART
     console.log(message)
     
   }).catch((message) => {
