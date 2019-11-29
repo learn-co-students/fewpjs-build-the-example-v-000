@@ -4,8 +4,30 @@ const FULL_HEART = '♥'
 
 // Your JavaScript code goes here!
 
+document.addEventListener('click', (e) => {
 
+  mimicServerCall()
+  .then(() => {
+    updateHeart(e);
+  })
+  .catch(function(error) {
+    document.querySelector('#modal-message').innerHTML = error
+    document.querySelector('.hidden').removeAttribute('class', 'hidden')
+    setTimeout(function(){
+      document.getElementById('modal').setAttribute('class', 'hidden')
+    }, 5000)
+  })
 
+  function updateHeart(e) {
+    if (e.target.innerHTML === EMPTY_HEART) {
+      e.target.innerHTML = FULL_HEART;
+      e.target.className = "activated-heart"
+    } else {
+      e.target.innerHTML = EMPTY_HEART;
+      e.target.className = "like"
+    }
+  }
+})
 
 //------------------------------------------------------------------------------
 // Ignore after this point. Used only for demo purposes
