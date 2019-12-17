@@ -4,6 +4,12 @@ const FULL_HEART = '♥'
 
 // Your JavaScript code goes here!
 
+heartIcons = document.getElementsByClassName("like-glyph")
+
+// for(const heartIcon of heartIcons){
+//   heartIcon.addEventListener("click", mimicServerCall)
+// }
+
 
 
 
