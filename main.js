@@ -13,6 +13,15 @@ document.addEventListener("DOMContentLoaded", function() {
   // initialLike();
 });
 
+function initialLike() {
+  const eHeart = Array.from(document.getElementsByClassName("like-glyph")).find(el => el.textContent === EMPTY_HEART);
+
+  eHeart.addEventListener("click", function(e) {
+    console.log("Clicky!");
+    mimicServerCall();
+  });
+};
+
 
 //------------------------------------------------------------------------------
 // Ignore after this point. Used only for demo purposes
