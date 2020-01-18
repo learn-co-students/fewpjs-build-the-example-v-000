@@ -9,11 +9,12 @@ document.addEventListener('DOMContentLoaded', () => {
   let likeBtns = document.getElementsByClassName('like-glyph');
   for (var i = 0; i < likeBtns.length; i++)
   {
-    likeBtns[i].addEventListener('click', serverCallAfterClick(event))
+    likeBtns[i].addEventListener('click', event => serverCallAfterClick(event))
   }
 });
 
 function serverCallAfterClick(event) {
+  console.log(event)
   mimicServerCall().then(data => {
     if (event.target.className === "like-glyph") {
       event.target.textContent = FULL_HEART;
