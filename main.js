@@ -4,7 +4,19 @@ const FULL_HEART = '♥'
 
 // Your JavaScript code goes here!
 
-let likeBtn = getElementsByClass('like');
+document.addEventListener('DOMContentLoaded', () => {
+  let likeBtns = document.getElementsByClassName('like-glyph');
+  console.log(likeBtns)
+  for (var i = 0; i < likeBtns.length; i++){
+    console.log(likeBtns[i])
+    likeBtns[i].addEventListener('click', (event) =>
+    {
+      console.log(event)
+    }
+    )
+  }
+});
+
 
 
 //------------------------------------------------------------------------------
