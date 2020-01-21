@@ -3,6 +3,11 @@ const EMPTY_HEART = '♡'
 const FULL_HEART = '♥'
 // Your JavaScript code goes here!
 
+//object literal
+ const glyph = {
+   '♡':'♥',
+   '♥':'♡' 
+ };
 
 
 document.addEventListener("DOMContentLoaded", () => { HideErrorBanner(); eventListeners(); });
@@ -29,25 +34,10 @@ function displayErrorBanner(e){
 function liker(e) {
   mimicServerCall().then((result) => { 
     HideErrorBanner();
-    if(e.target.innerText === EMPTY_HEART){ 
-      e.target.innerText = FULL_HEART;
-      e.target.setAttribute("class","activated-heart");
-    }else{
-      e.target.innerText = EMPTY_HEART;
-      e.target.removeAttribute("class","activated-heart");
-    }
+    e.target.innerText = glyph[e.target.innerText] ;
     console.log(result)
-  }).catch((error) => { displayErrorBanner(error)})
- 
-
+  }).catch((error) => { displayErrorBanner(error)})  
 } 
-
-
-
-
-
-
-
 
 
 //------------------------------------------------------------------------------
