@@ -9,7 +9,7 @@ const FULL_HEART = '♥'
    '♥':'♡' 
  };
 
-
+ 
 document.addEventListener("DOMContentLoaded", () => { HideErrorBanner(); eventListeners(); });
 function eventListeners() {
   const like = document.getElementsByClassName("like-glyph");
@@ -35,6 +35,7 @@ function liker(e) {
   mimicServerCall().then((result) => { 
     HideErrorBanner();
     e.target.innerText = glyph[e.target.innerText] ;
+    e.target.innerText === '♥' ? e.target.setAttribute("class", "activated-heart") : e.target.removeAttribute("class", "activated-heart");
     console.log(result)
   }).catch((error) => { displayErrorBanner(error)})  
 } 
