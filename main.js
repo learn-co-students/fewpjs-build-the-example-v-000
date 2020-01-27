@@ -38,7 +38,7 @@ function handleError(error){
 }
 
 function hideModal(){
-  errModal.classList.add('hidden')
+  errorModal.classList.add('hidden')
 }
 
 
