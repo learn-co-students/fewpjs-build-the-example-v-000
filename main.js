@@ -4,7 +4,31 @@ const FULL_HEART = '♥'
 
 // Your JavaScript code goes here!
 
+// HERE'S THE PLAN STAN!!!
+// Write out code as if there is one "like" elements
+// Encapsulate code inside a loop (for each?)
 
+// OR...
+// Use article#id to identify unique "like" elements and assign event listeners that way
+// Resource: https://css-tricks.com/the-thinking-behind-simplifying-event-handlers/
+
+
+document.addEventListener("DOMContentLoaded", function() {
+  document.addEventListener('click', event => {
+    console.log(event.target);
+  });
+  
+  // initialLike();
+});
+
+function initialLike() {
+  const eHeart = Array.from(document.getElementsByClassName("like-glyph")).find(el => el.textContent === EMPTY_HEART);
+
+  eHeart.addEventListener("click", function(e) {
+    console.log("Clicky!");
+    mimicServerCall();
+  });
+};
 
 
 //------------------------------------------------------------------------------
