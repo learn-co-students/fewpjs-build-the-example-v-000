@@ -2,10 +2,37 @@
 const EMPTY_HEART = '♡'
 const FULL_HEART = '♥'
 
-// Your JavaScript code goes here!
+let heartStates = {
+  '♡':'♥',
+  '♥':'♡'
+};
 
+let colorState = {
+  "red" : "",
+  "" : "red"
+};
 
+let articleHearts = document.querySelectorAll(".like");
 
+function likeCallback(e){
+  let heart = e.target;
+  mimicServerCall("objUrl")
+  .then(function(serverMessage){
+    heart.innerText = heartStates[heart.innerText];
+    heart.style.color = colorState[heart.style.color];
+  })
+  .catch(function(error){
+    document.getElementById("modal").className = "";
+    document.getElementById("modal-message").innerText = "Something went wrong!"
+    setTimeout(function(){
+      document.getElementById("modal").className = "hidden";
+    }, 5000)
+  });
+}
+
+for (let glyph of articleHearts){
+  glyph.addEventListener("click", likeCallback);
+}
 
 //------------------------------------------------------------------------------
 // Ignore after this point. Used only for demo purposes
