@@ -4,6 +4,28 @@ const FULL_HEART = '♥'
 
 // Your JavaScript code goes here!
 
+// make modal hidden by default
+let modal = document.querySelector('#modal');
+modal.classList.add('hidden');
+
+let likeGlyphs = document.querySelectorAll('.like-glyph');
+
+function like(likeGlyph){
+  likeGlyph.addEventListener('click', function(){
+    mimicServerCall()
+    .then()
+    .catch(e => {
+      modal.classList.remove("hidden");
+      modal.innerText = e;
+    })
+    .then(() => likeGlyph.innerText = FULL_HEART);
+  });
+}
+
+for(const likeGlyph of likeGlyphs){
+  like(likeGlyph);
+}
+
 
 
 
