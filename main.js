@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
     heart.addEventListener('click', likeComment)
 
     function likeComment() {
-        if (heart.className != "activated-heart") {
+        if (heart.className === "like-glyph") {
             mimicServerCall("url")
                 .then(function(response) {
                     return response;
@@ -27,10 +27,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     setTimeout(function() { modal.className = "hidden" }, 5000);
                 })
         } else {
-
-            //WHEN USER CLICKS FULL HEART
-            //   Change to empty heart
-            //   Remove .activated-heart class
             heart.innerText = EMPTY_HEART;
             heart.className = "like-glyph";
         }
