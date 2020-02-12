@@ -1,7 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-
-
     // Defining text characters for the empty and full hearts for you to use later.
     const EMPTY_HEART = '♡'
     const FULL_HEART = '♥'
@@ -12,26 +10,33 @@ document.addEventListener("DOMContentLoaded", () => {
     heart.addEventListener('click', likeComment)
 
     function likeComment() {
-        mimicServerCall("url")
-            .then(function(response) {
-                return response;
-            })
-            .then(function(object) {
-                heart = FULL_HEART;
-                //Add .activated-heart class to make it red
-            })
-            .catch(function(error) {
-                let modal = document.querySelector("#modal")
-                modal.classList.remove("hidden");
-                let modalMessage = document.querySelector("#modal-message")
-                modalMessage.innerText = error;
-                setTimeout(function() { modal.className = "hidden" }, 5000);
-            })
+        if (heart.className != "activated-heart") {
+            mimicServerCall("url")
+                .then(function(response) {
+                    return response;
+                })
+                .then(function(object) {
+                    heart.innerText = FULL_HEART;
+                    heart.className = "like-glyph activated-heart"
+                })
+                .catch(function(error) {
+                    let modal = document.querySelector("#modal")
+                    modal.classList.remove("hidden");
+                    let modalMessage = document.querySelector("#modal-message")
+                    modalMessage.innerText = error;
+                    setTimeout(function() { modal.className = "hidden" }, 5000);
+                })
+        } else {
+
+            //WHEN USER CLICKS FULL HEART
+            //   Change to empty heart
+            //   Remove .activated-heart class
+            heart.innerText = EMPTY_HEART;
+            heart.className = "like-glyph";
+        }
     }
 
-    //WHEN USER CLICKS FULL HEART
-    //   Change to empty heart
-    //   Remove .activated-heart class
+
 
     //------------------------------------------------------------------------------
     // Ignore after this point. Used only for demo purposes
