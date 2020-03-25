@@ -12,7 +12,7 @@ mimicServerCall()
 })
 
 const addListeners = () => {
-  likesArray = Array.from(document.getElementsByClassName('like-glyph'))
+  const likesArray = Array.from(document.getElementsByClassName('like-glyph'))
   likesArray.forEach(element => {
     element.addEventListener('click', () => {
       if (element.innerText === EMPTY_HEART) {
