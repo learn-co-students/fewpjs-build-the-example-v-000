@@ -2,13 +2,12 @@
 const EMPTY_HEART = '♡'
 const FULL_HEART = '♥'
 const likeIcons = document.querySelectorAll(".like-glyph") 
-// Your JavaScript code goes here!
 
+// Your JavaScript code goes here!
 window.onload=function(){
   // When a user clicks on an empty heart
   likeIcons.forEach(link => link.addEventListener("click", toggleLike))
 }
-
 
 function toggleLike(event) {
   // Invoke mimicServerCall
@@ -43,8 +42,6 @@ function toggleLike(event) {
   })
 }
 
-
-
 //------------------------------------------------------------------------------
 // Ignore after this point. Used only for demo purposes
 //------------------------------------------------------------------------------
@@ -62,5 +59,3 @@ function mimicServerCall(url="http://mimicServer.example.com", config={}) {
     }, 300);
   });
 }
-
-//} //} //Closes window.onload function
