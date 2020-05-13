@@ -5,7 +5,6 @@ const FULL_HEART = '♥'
 // Your JavaScript code goes here!
 
 document.addEventListener("DOMContentLoaded", () => {
-  document.getElementById("modal").className = "hidden"
   let likers = document.getElementsByClassName('like')
   for(let i = 0; i < likers.length; i++){
     liker = likers[i]
@@ -13,31 +12,32 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-function likerClickFunction(){
+function likerClickFunction(event){
   let heart = heartGetter()
 
-
-
   if(heart == EMPTY_HEART){
-    // mimicServerCall()
-    // if(true){
-    //
-    // }
-    // else{
-    //
-    // }
-      heartSetter(FULL_HEART)
+    mimicServerCall()
+      .then(function(){
+        heartSetter(FULL_HEART, event)
+        // set to red
+        if (event.target.getElementsByTagName("span")[0] == undefined){
+          heart = event.target.classList.add("activated-heart");
+        }
+        else {
+          heart = event.target.getElementsByTagName("span")[0].classList.add("activated-heart");
+        }
+      })
+      .catch(function(error){
+        document.getElementById('modal').classList.remove('hidden')
 
-      // set to red
-      if (event.target.getElementsByTagName("span")[0] == undefined){
-        heart = event.target.classList.add("activated-heart");
-      }
-      else {
-        heart = event.target.getElementsByTagName("span")[0].classList.add("activated-heart");
-      }
+        setTimeout(function(){
+          document.getElementById('modal').classList.add('hidden')
+        }, 5000)
+      })
+
   }
   else{
-    heartSetter(EMPTY_HEART)
+    heartSetter(EMPTY_HEART, event)
 
     // remove red
     if (event.target.getElementsByTagName("span")[0] == undefined){
@@ -47,20 +47,6 @@ function likerClickFunction(){
       heart = event.target.getElementsByTagName("span")[0].classList.remove("activated-heart");
     }
   }
-
-// when clicking on an empty heart
-// if mimicServer fails do a bunch of stuff
-//   Respond to the error using a .catch(() => {}) block after your .then(() => {}) block.
-//   Display the error modal by removing the .hidden class
-//   Display the server error message in the modal
-//   Use setTimeout to hide the modal after 5 seconds (add the .hidden class)
-// if mimicServer succeeds, change the like to
-//   Change the heart to a full heart
-//   Add the .activated-heart class to make the heart appear red
-
-// when clicking on a full heart
-//   Change the heart back to an empty heart
-//   Remove the .activated-heart class
 }
 
 // returns the empty or full heart
@@ -76,7 +62,7 @@ function heartGetter(){
 }
 
 // sets the clicked heart to a new heart
-function heartSetter(heart){
+function heartSetter(heart, event){
   if (event.target.getElementsByTagName("span")[0] == undefined){
     event.target.innerHTML = heart
   }
