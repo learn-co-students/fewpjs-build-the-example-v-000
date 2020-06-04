@@ -3,40 +3,55 @@ const EMPTY_HEART = '♡'
 const FULL_HEART = '♥'
 
 // Your JavaScript code goes here!
+let modal = document.querySelector("#modal")
+modal.setAttribute("class", "hidden")
 
-let modal = document.getElementById("modal")
-modal.className = "hidden"
-let likes = document.getElementsByClassName("like-glyph")
-Array.from(likes).forEach(element => {
-  element.addEventListener("click", function() {
-    // debugger;
-    mimicServerCall()
-    .then()
-    .catch((error) => {
-      modal.className = ""
-      modal.innerText = error
-      modalTimeOut()
-    })
-    .success(heartStatus(element))
+
+
+let likes = document.querySelectorAll("span.like-glyph")
+likes.forEach(like => {
+  like.addEventListener("click", function() {
+    if(like.innerHTML === `${FULL_HEART}`) {
+      
+      fullHeart(like)
+    } else {
+      
+      mimicServerCall()
+      .then(() => {
+       emptyHeart(like)
+      })
+      
+      .catch((error) => {
+        modal.removeAttribute("class", "hidden")
+        modal.innerHTML = error
+        setTimeout(function() {
+          modal.setAttribute("class", "hidden")
+        }, 5000)
+      })
+    }
   })
 })
 
-function heartStatus(heart) {
-  if (heart.innerText === "&#x2661;" || heart.innerText === EMPTY_HEART) {
-
-    heart.innerText = FULL_HEART
-  } else {
-
-    heart.innerText = EMPTY_HEART
-  }
-  
+function emptyHeart(like) {
+  like.innerHTML = `${FULL_HEART}`
+  // like.className = "activated-heart"
+  like.setAttribute("class", "activated-heart")
 }
 
-function modalTimeOut() {
-setTimeout(function() {
-    modal.className = "hidden"
-  }, 5000)
+function fullHeart(like) {
+  like.innerHTML = `${EMPTY_HEART}`
+  like.classList.remove("activated-heart")
 }
+
+
+
+
+
+
+
+
+
+
 
 //------------------------------------------------------------------------------
 // Ignore after this point. Used only for demo purposes
