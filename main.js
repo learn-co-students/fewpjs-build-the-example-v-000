@@ -3,10 +3,32 @@ const EMPTY_HEART = '♡'
 const FULL_HEART = '♥'
 
 // Your JavaScript code goes here!
+let glyphStates = {
+  "♡": "♥",
+  "♥": "♡"
+};
 
+let colorStates = {
+  "red" : "",
+  "": "red"
+};
 
+let hearts = document.querySelectorAll('.like');
 
-
+function like (e) {
+  let heart = e.target;
+  mimicServerCall("test URL")
+    .then(function(serverMessage){
+      heart.innerText = glyphStates[heart.innerText];
+      heart.style.color = colorStates[heart.style.color]
+    })
+    .catch(function(error){
+      document.getElementById('modal').className = "";
+    });
+}
+for (let glyph of hearts) {
+  glyph.addEventListener("click", like);
+}
 //------------------------------------------------------------------------------
 // Ignore after this point. Used only for demo purposes
 //------------------------------------------------------------------------------
