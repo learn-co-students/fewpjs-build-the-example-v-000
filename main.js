@@ -17,7 +17,7 @@ var liker = document.querySelector(".like")
 //     })
 //   })
 // });
-unction likeCallback(e) {
+function likeCallback(e) {
   let heart = e.target;
   mimicServerCall("bogusUrl")
     //OR: mimicServerCall("bogusUrl", {forceFailure: true})
