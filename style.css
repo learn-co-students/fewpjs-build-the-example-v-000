@@ -1,6 +1,6 @@
 body {
   margin: 5% 10%;
-  background-color: rgb(29,161,242);
+  background-color: rgb(86, 29, 242);
 }
 
 .like-glyph {
@@ -51,6 +51,8 @@ article.media-post > footer ul {
   top: 0;
   left: 0;
   right: 0;
+
+  visibility: hidden;
 }
 
 #modal p {
