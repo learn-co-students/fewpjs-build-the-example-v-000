@@ -1,9 +1,48 @@
 // Defining text characters for the empty and full hearts for you to use later.
-const EMPTY_HEART = '♡'
-const FULL_HEART = '♥'
+const EMPTY_HEART = '♡';
+const FULL_HEART = '♥';
 
 // Your JavaScript code goes here!
 
+let heartColor = {
+  "red" : "",
+  "" : "red"
+};
+
+const modal = document.querySelector('#modal');
+
+function hidesModalError() {
+  modal.classList.add("hidden");
+}
+
+function showModalError() {
+  modal.classList.remove("hidden");
+}
+
+hidesModalError();
+
+
+document.addEventListener("DOMContentLoaded", (event) => {
+  document.addEventListener("click", function(event) {
+    const likeStatus = event.target.innerText;
+    let heart = event.target;
+    if (event.target.classList.contains('like-glyph')){
+
+    }
+    mimicServerCall()
+    .then( () => {
+      event.target.innerText = event.target.innerText == EMPTY_HEART ? FULL_HEART : EMPTY_HEART;
+      heart.style.color = heartColor[heart.style.color];
+    })
+    .catch ( () => {
+      let errorMessage = document.createElement('p');
+      errorMessage.innerHTML = "You encountered a random server error. Please try again.";
+      modal.appendChild(errorMessage);
+      showModalError();
+      setTimeout(() => {hidesModalError(); modal.removeChild(errorMessage)}, 5000);
+    });
+  });
+});
 
 
 
@@ -16,7 +55,7 @@ function mimicServerCall(url="http://mimicServer.example.com", config={}) {
     setTimeout(function() {
       let isRandomFailure = Math.random() < .2
       if (isRandomFailure) {
-        reject("Random server error. Try again.");
+        reject("Error. Please try again.");
       } else {
         resolve("Pretend remote server notified of action!");
       }
