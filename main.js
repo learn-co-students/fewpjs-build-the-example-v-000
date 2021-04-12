@@ -13,12 +13,14 @@ function toggleLike(event){
     let heart = event.target.textContent
     if ( heart == EMPTY_HEART || heart == "&#x2661;"){
       event.target.textContent = FULL_HEART
+      
     }else{
       event.target.textContent = EMPTY_HEART
     }
-  }).catch(error =>{
+    event.target.classList.toggle('activated-heart')
+\  }).catch(error =>{
     toggleModal()
-    setTimeout( toggleModal, 5000)
+    setTimeout( toggleModal, 3000)
   })
 
 }
