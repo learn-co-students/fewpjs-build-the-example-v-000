@@ -4,6 +4,46 @@ const FULL_HEART = '♥'
 
 // Your JavaScript code goes here!
 
+const errorModal = document.getElementById('modal')
+
+function hideToggle () {
+  errorModal.classList.toggle('hidden')
+}
+
+function heartActiveToggle(el) {
+  el.classList.toggle('activated-heart')
+}
+
+function heartFullToggle(el) {
+  if (el.innerHTML === EMPTY_HEART) {
+    el.innerHTML = FULL_HEART
+  }
+  else {el.innerHTML = EMPTY_HEART}
+}
+
+document.querySelectorAll('span.like-glyph').forEach(span => {
+  span.addEventListener('click', (clickEvent) => {
+    eventSpan = clickEvent.target
+    updateHeart(eventSpan)
+  })
+})
+
+function updateHeart(el) {
+  mimicServerCall()
+    .then(function() {
+      heartFullToggle(el);
+      heartActiveToggle(el);
+    })
+    .catch(function(error) {
+      hideToggle();
+      let p = errorModal.querySelector('p');
+      p.innerHTML = error
+      setTimeout(hideToggle, 3000);
+    })
+}
+
+
+
 
 
 
