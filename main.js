@@ -2,8 +2,6 @@
 const EMPTY_HEART = '♡'
 const FULL_HEART = '♥'
 
-// Your JavaScript code goes here!
-
 
 const allHearts = document.querySelectorAll('.like-glyph');
 
