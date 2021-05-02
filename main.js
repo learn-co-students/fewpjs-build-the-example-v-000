@@ -4,6 +4,32 @@ const FULL_HEART = '♥'
 
 // Your JavaScript code goes here!
 
+let theLikes = document.querySelectorAll(".like");
+
+
+function likeCallBack(evt){
+  let thisLike  = evt.target;
+
+     mimicServerCall().then((ok) => {
+        thisLike.classList.add('activated-heart');
+        thisLike.querySelector('span').innerText = FULL_HEART;
+
+
+     }).catch( (error) => {
+        let theModal =  document.querySelector('#modal');
+        theModal.classList.remove('hidden');
+        setTimeout( function(){
+          theModal.classList.add('hidden');
+        },5000);
+
+     });
+
+}
+
+for ( let e of theLikes) {
+  e.addEventListener('click', likeCallBack );
+}
+
 
 
 
